@@ -1,0 +1,284 @@
+{
+	"_id": "1+55003057",
+
+    -- ** change to all lower case with underscore
+	-- ** xref to consolidation
+	
+	-- ** Overaching design comments
+	-- 
+	-- legacy ODS, particularly some table ids, are included in the model labeled with a deprecated prefix.  These will aid in QA match testing with the source and will not be updated or included in new records 
+	--
+	-- Dates
+	-- capturedOn represents the date a value is captured in source system. For instance in Fujitsu or ATG
+	-- updateOn reflects the date the property was last updated in MapR.  For instance, Fujitsu can send the same address value in an operational message.  The respective properties are updated but the value did not change.
+	-- changeOn is the date the value changed.  
+	
+	-- ** Outstanding Items ***
+	-- Capturing PII last changed events, with the before and after value.  There is a requirement to capture before and after property change events and their values.  For instance, the date an address, name, email, optin changed.  Direction is to capture those in a separate changeHistory model. Ingestion service (and/or) CDC with applicable change logic will have to be created.
+	-- Introduce Salesfloor items (see CUST_STG). Address when Salesfloor/Styleconnect interface/requirements are addressed in Step 3
+	-- Introduce Experian address attributes.  Should be driven by business process requirements. - Step 3
+	-- What to do with preferences yet to be pulled out as separate properties/arrays. For instance, Unengaged email only brand groups, ipad_general (social media preference). Currently, leaving in preferences array - Adnan investigating if we should pull them out
+	
+
+	-- ** ideally an identifier for a person who may be a customer accross brands  **
+	-- ** Not part of Step 1 historical or ingestion
+	"individualId" : "TBD???", 				-- Experian ID or generated  -- Need spec to provide logic to assign individual ID.  this could be a secondary index
+	
+	-- things about a person
+	"deprecatedId" 							-- original Customer_id. Beneficial for QA match testing.
+	"alphaKey": "Rock lson   ",
+	"phoneticKey": "Roc son     ",
+	"firstName": "Rocky",
+	"lastName": "Carlson",
+	"gender": "Female",  					-- convert to full word (F)emale, (M)ale, (U)ndisclosed upon ingestion
+	"dateOfBirth" : "1910-09-01",  			-- birthMonth only provided by source system.  Operational messages formatted to provide Year and Days. For example 1910-MM-01
+	"isDeceased" : false,   				-- history derived from a preference. Relevant operational messages will provide isDeceased:true in message/file and should set applicable excludes.fromProcess properties.
+	
+	"associateNumber" : 1000999,  			-- only included when customer is identified as an associate.  Adnan to provide rules used to identify customers who are associates.  Will need to have initial process to assign.
+	
+	-- *** Per Brand
+	"joined_on" : "2014-09-14T00:00:00Z", 	-- from Create_source_date
+	"joined_at":"1801", 					-- provided mostly from fujitsu.  Adnan working on a historical query to populate.
+	"referredBy" : "Television", 			-- create_source in atg confirmed via chicos.com registration  
+	"introducedBy" : "STORE",				-- Included in operational message from Fujitsu and ATG.  Adnan working on a historical query to populate.
+	"lastUpdate": "2014-07-28T04:57:00.000Z",
+	"preferredLanguage" : "English",  		-- no history for this attribute. Included in operational message from Fujitsu and ATG
+
+	"lastEmailOpenedOn" 	: "2018-01-318T04:57:00.000Z" -- COPEN, SOPEN and WOPEN preferences
+	"lastEmailClickedOn" 	: "2018-01-318T04:57:00.000Z" -- CCLIK, SClICK and WCLIK preferences
+	
+     -- history is available for campaign seeds.  Seeds are preferences.  Valid values Primary, Secondary, Remote or Canadian.  
+	 -- Operationally, we need to provide rules/proposed mechanism to update manually (admin type customer page?). Not included in operational messages
+	"campaignSeeds" : [ 
+		{"depreciatedSeedId" : 855682, "seed" : "SEED1" "description" : "Primary", "capturedOn":"2019-03-12T10:30:00Z", "lastUpdate" : "2014-07-28T04:57:00Z"} 
+	],
+	
+	 -- history is available for panelists.  Panelist are identified per brand. Valid values are CHS online panelist, Soma online panelist, WHBM online panelist   
+	 -- Operationally, we need to provide rules/proposed mechanism to update manually (admin type customer page?). Not included in operational messages. Could also set applicable excludes.fromProcess properties
+	"panelists" : [ 
+		{"depreciatedPanelistId" : 855123456, "code" : "CONPL", "panelist" : "Chicos Online Panelist", "capturedOn":"2019-03-12T10:30:00Z", "lastUpdate" : "2014-07-28T04:57:00Z"} 
+	],
+   
+   -- *** Generic attribute array added per Adnan. Reason: To support business introduction of describing characteristics not requiring immediate process changes.
+   -- no historical data or operational ingestion rules at this time.  This is a mock-up.
+   "businessAttributes" : [
+		{"attribute" : "value", "capturedOn": "YYYY-MM-DDTHH:MM:SSZ", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ"} 
+	],
+	
+	-- Requests received from Source systems.  Historical Data will be captured in event change history.  Including here and new requests are directed to change history.
+	"requests" : [
+		{ "description" : "Birthday Card", "code" : "REQST", "group": "groupCode", "groupDescription" : "Group Description","capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Birthday Card", "code" : "RPL","groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Birthday Card", "code" : "RPLBD","groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Chico's Catalog with Soma Insert", "code" : "CHSOM", "groupCode", "groupDescription" : "Group Description","capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Soma Catalog", "code" : "SCTLG", "groupCode", "groupDescription" : "Group Description","capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Catalog", "code" : "CAT","groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Never Received Card", "code" : "NVRCV","groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Lost or Stolen Card", "code" : "LOST", "groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Lost or Stolen Soma Card", "code" : "SLOST", "groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Card Name Change", "code" : "NMCHG", "groupCode", "groupDescription" : "Group Description","capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Card Address Change", "code" : "SLOST", "groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Black Book Card", "code" : "BBCRD", "groupCode", "groupDescription" : "Group Description", "capturedOn" : "YYYY-MM-DDTHH:MM:SS", "lastUpdate" : "YYYY-MM-DDTHH:MM:SSZ" }
+	]
+	
+	-- the historical exclude from experian and purge query is established.  Operationally, we need to provided rules/proposed mechanism to update manually (admin type customer page?).
+	"excludes" : [
+		{"fromProcess" : "experian", "capturedOn": "YYYY-MM-DDTHH:MM:SSZ", "lastUpdate" : "2017-01-18 10:55:00" },	-- customer with 'EXPN' preference
+		{"fromProcess" : "purge", "capturedOn": "YYYY-MM-DDTHH:MM:SSZ", "lastUpdate" : "2015-06-22 09:43:00" },  	-- customer with 'LTP09' or 'LTP10'" preference.  customers could have $1 added to lifetime sales to avoid the purge logic
+		{"fromProcess" : "consolidation", "capturedOn": "YYYY-MM-DDTHH:MM:SSZ", "lastUpdate" : "2017-01-18 10:55:00"}, -- this is an example, illustrating instances can be introduced to support future processing directions.
+		{"fromProcess" : "marketing", "capturedOn": "YYYY-MM-DDTHH:MM:SSZ", "lastUpdate" : "2019-01-18 10:55:00"} 	-- this is an example, could be used to ignore marketing to third party customers and customers who are associates.
+	],
+   
+   
+   -- Permissions. Operational message updates come from Fujitsu, ATG and Adhoc files and will not include deprecatedPermissionId 
+   "permissions" : [
+		{ "deprecatedPermissionId" : 2949164521 "permission" : "frontlineEmail", "code" : "DNEC", "description" : "Do Not Email Chico's", "capturedOn":"2019-03-12T10:30:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440999, "permission" : "frontlineEmailFrequency", "code" : "CE1W", "description" : "Send email once a week CHS", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440999, "permission" : "mail", "code" : "DNMC", "description" : "Do Not Mail Chico's", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440997, "permission" : "phone", "code" : "DNMC", "description" : "Do Not Phone Chico's", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440996, "permission" : "mobileText", "code" : "DNTC", "description" : "Do Not Text Chico's", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440991, "permission" : "mailCatalog", "code" : "MUST", "description" : "Must Mail Catalog", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440891, "permission" : "shareWithPartners", "code" : "DNR", "description" : "Do Not Share", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 304407771, "permission" : "outletEmail", "code" : "DOEC", "description" : "Do Not Email Chicos OTR", "capturedOn":"2019-02-07T01:03:00Z", "lastUpdate" : "2019-02-07T01:52:00Z"},
+		{ "deprecatedPermissionId" : 30440999, "permission" : "outletEmailFrequency", "code" : "CE1W", "description" : "Send email once a week CHS", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"}
+	],
+	
+	 -- Cross Brand Permissions. Operational message updates come from ATG ??? 3/26 Adnan to confirm.  This may only be a historical load 
+   "crossBrandPermissions" : [
+		{ "deprecatedPermissionId" : 294916423, "permission" : "frontlineEmail", "code" : "DNEW", "description" : "Do Not Email WHBM", "capturedOn":"2019-03-12T10:30:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440999, "permission" : "frontlineEmailFrequency", "code" : "WE1W", "description" : "Send email once a week WHBM", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440999, "permission" : "mail", "code" : "DNMW", "description" : "Do Not Mail WHBM", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440997, "permission" : "phone", "code" : "DNMW", "description" : "Do Not Phone WHBM", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"},
+		{ "deprecatedPermissionId" : 30440996, "permission" : "mobileText", "code" : "DNTW", "description" : "Do Not Text WHBM", "capturedOn":"2019-03-12T10:33:00Z", "lastUpdate" : "2019-03-12T11:57:00Z"}
+	
+	],
+     
+     --  New Interest structure to include existing preference codes. Historical query written; populated from preferences.  ATG operational message includes 
+	"interests" : [  
+		{"deprecatedPreferenceId": 277244709, "interest" : "NARVW", "description" : "New Arrivals - Chicos", "capturedOn" : "2014-07-28T04:57:00", "lastUpdate" : "2014-07-28T04:57:00" },
+		{"deprecatedPreferenceId": 277244751, "interest" : "FSHNC", "description" : "Fashion Trends & Style Tips - Chicos", "capturedOn" : "2010-01-31 05:05:00", "lastUpdate" : "2010-01-31 05:05:00"},
+		{"deprecatedPreferenceId": 277244771, "interest" : "EVNTC", "description" : "Local Store Events - Chicos", "capturedOn" : "2010-01-31 05:05:00", "lastUpdate" : "2010-01-31 05:05:00"},
+		{"deprecatedPreferenceId": 277244999, "interest" : "SALEC",  "description" : "Sales Events - Chicos" "capturedOn" : "2010-01-31 05:05:00", "lastUpdate" : "2013-10-20T01:51:00"}
+	],
+	
+	-- no history
+	"sizes" : [
+		{"deprecatedPreferenceId" : 303833861, "code" : "BOTM", "description" : "Bottom Size", "size" : "XLH", "capturedOn" : "2018-08-25T12:00:00", "lastUpdate" : "2018-08-26T08:00:00" },
+		{"deprecatedPreferenceId" : 303833863, "code" : "BRAS", "description" : "Standard Bra Size", "size" : "DD38", "capturedOn" : "2018-08-25T12:00:00", "lastUpdate" : "2018-08-26T08:00:00" },
+		{"deprecatedPreferenceId" : 303833862, "code" : "TOPS", "description" : "Top Size", "size" : "XL", "capturedOn" : "2018-08-25T12:00:00", "lastUpdate" : "2018-08-26T08:00:00" },
+		{"deprecatedPreferenceId" : 303833865, "code" : "BRAL", "description" : "Bralette Size", "size" : "XXL", "capturedOn" : "2018-08-25T12:00:00", "lastUpdate" : "2018-08-26T08:00:00" }
+	],
+   
+
+   -- 3/13 Doug/Adnan to determine if these are start/seed figures to support realtime on-the-fly calculations, or if they are kept up-to-date with received sales transactions.
+   -- 3/19: Conclusion is these will be seed values.  Need spec to write a separate program to establish baseline seed values based on a designated date using WHOUSE as source.
+   -- Not part of historical ingestion or Step 1 message ingestion.
+	"metrics" : { 
+		"firstTransactionDate" : "2000-07-28T04:57:00Z",
+		"lastTransactionDate": "2018-12-28T04:57:00Z",
+		"lifetimeTransactionCountSeed": 123,
+		"lifetimeTotalSalesAmountSeed": 12321.43,
+		"lifetimeCouponTransactionCountSeed": 43,
+		"lifetimeGrossMarginAmountSeed": 6554,
+		"lifetimeTotalUnitCountSeed": 254
+	},
+   		
+    -- Historical query provided to extract from customer_contact_phone_pii. Included in Fujitsu, ATG and Adhoc operational messages. 
+	"phones" : [  
+		{
+		-- 
+		"type": "home", -- operational ingestion to convert H to home, M to mobile
+		"number": "2068539480",
+		"capturedOn":"2014-07-12T01:10:00Z",
+		"lastUpdate": "2014-07-28T04:58:00Z"
+		},
+		{
+		"type": "mobile", -- operational ingestion to convert M to mobile
+		"number": "2065551234",
+		"capturedOn":"2014-07-12T01:10:00Z",
+		"lastUpdate": "2014-07-28T04:58:00Z"
+		}
+	]
+	
+	-- Historical query provided to extract from customer_contact_email_pii. Included in Fujitsu, ATG and Adhoc operational messages.
+	-- This is an array, but only receive one email from source system. If a person/brand_id-customer_no has more than one email, how do we know which to use?		
+	"emails" : [    --- could be renamed to serviceEmail and promotionalEmail
+			{	"address" : "myemail2@dot.com",
+				"isEmailable" : true, 					-- mailIndicatorId
+				"capturedOn":"2014-07-12T01:10:00Z",
+				"lastUpdate": "2014-07-28T04:58:00.000Z"
+			}
+			{	"address" : "myemail@dot.com",
+				"isEmailable" : true, 					-- mailIndicatorId
+				"capturedOn":"2014-07-12T01:10:00Z",
+				"lastUpdate": "2014-07-28T04:58:00.000Z"
+			}
+		]
+	
+    
+		
+	"addresses" [  -- could be separated as primaryMailingAddress, shippingAddresses[], vacationMailingAddress. Reevaluate in Step 3,4
+			{
+			  "isMailable": true,   -- mailIndicatorId
+			  "isPrisonAddress" : false,  -- Unless specific reason to designate as a prison should be acceptsMailDelivery:false
+			  "type"  : "home",  -- converted from H
+			  "countryCode": "USA",
+			  "addressMatchKey": "98057368   STEVE     ",
+			  "carrierRoute": "",
+			  "ncoaPin": "5000012428416",
+			  "street1": "980    STEVE    ",
+			  "street2": "",
+			  "city": "Renton",
+			  "state": "WA",
+			  "dpvChkdigit": "68 2",
+			  "dpvLotNoSeq": "0278 A",
+			  "zipCode": "98057-3435",
+			  "capturedOn":"2014-07-12T01:10:00Z",
+			  "uUpdate": "2014-07-28T04:58:00.000Z",
+			  "monthFrom": null,
+			  "monthTo": null,
+			  "qasMatchCode": "R913",
+			  "mailReturned": false			-- was mailReturnedIndicator
+			  "experian" : {				-- add attributes from experian.  These will be addressed in Step 3 when we address experian incoming interfaces.
+			  
+			  }
+			}
+		]
+		
+
+	-- ** Example ONLY, illustrating introducing potential new contact properties. There is no history. Not included in current operational messages. **
+	"socialMedia": {
+		
+		{
+			"twitter" : "@mytwitter",
+		
+		},
+		{
+			"facebook" : "facebookname",
+			
+		},
+		{
+			"instagram" : "instahandle",
+			
+		},
+		{
+			"pinterrest" : "pinteresthandle",
+			
+		},
+		},
+			
+	  
+   	
+	-- ** Populate only in Step 1. Need Historical Query Additional Logic will be addressed in later steps.		
+	"loyalty": [									-- was customerLoyalty
+		{
+			"deprecatedLoyaltyId": 11702520,
+			"isEnrolled": true, 								-- (from ATG)
+			"statusReachedOn": "2000-05-15T12:00:00Z",     		-- as loyaltyStartDate
+			"statusFlag": true,   							-- (from ATG)
+			"lifetimeSpendAmount": 28165.22,  				-- seems like this should go to metrics.loyaltyLifetimeSpendAmount
+			"mostRecentSpendDate": "2016-06-30T08:26:00Z",  --
+			"capturedOn" : "2016-06-29T07:26:00Z",
+			"lastUpdate": "2016-06-30T08:26:00Z",
+			"tier": null,  				 					-- (from ATG)
+			"tierReachedOn": "",  
+			"spendAmount": null,  
+			"deltaToNextTier": null,  						-- was loyalty_delta
+			"enrollmentRequestedOn": "2000-05-15T12:00:00Z" -- was loyaltyOptinDate.(from ATG)
+			
+		}
+	],
+	
+
+	-- Adnan, needs to provide query and details how this relates to a specific customer. Believe the history needs to come from SAS - Customer_alternate_Key Only attributes in the table are alternate_key_id and event_type_id. 
+	"alternateKeys" : [
+		{ 						}
+	]
+	
+	"consolidations": [
+		{
+			"oldBrandId": 1,
+			"oldCustomerNo": 8138001583,
+			"lastUpdate": "2016-06-30T08:26:00Z",
+			"dateOfObsolescence": "8/23/2000 10:01:00 AM"
+		},
+		{
+			"oldBrandId": 1,
+			"oldCustomerNo": 9991003784,
+			"lastUpdate": "2016-06-30T08:26:00Z",
+			"dateOfObsolescence": "8/21/2000 4:27:00 PM"
+		},
+		{
+			"oldBrandId": 1,
+			"oldCustomerNo": 1025646682,
+			"lastUpdate": "2016-06-30T08:26:00Z",
+			"dateOfObsolescence": "10/6/2010 12:31:00 PM"
+		},
+		{
+			"oldBrandId": 1,
+			"oldCustomerNo": 1023487386,
+			"lastUpdate": "2016-06-30T08:26:00Z",
+			"dateOfObsolescence": "6/3/2010 4:24:00 PM"
+		}
+	]
+}

@@ -1,0 +1,115 @@
+{
+  "brandId" : 1							-- 1 = Chico's and OTR, 2= Soma, 3 = WHBM
+  "customerNo":2100000670,
+  "firstName":"KATHYRN",
+  "middleInitial" : "",  				-- provide when exists
+  "lastName":"KERBER",
+  "gender":"U", 						-- convert to full word (F)emale, (M)ale, (U)ndisclosed upon ingestion 
+  "dateOfBirth": "1900-04-01",  		-- landmark_date - birth_month. convert to "1900-MM-01"
+  "joinDate":"2018-03-11",  			-- create_Source_Date
+  "joinLocation":"0821",  				-- default to ATG Store number based on brand
+  "referredBy" : "Television", 			-- create_source chicos.com  
+  "preferredLanguage" : "English",   	-- language_code
+  "lastUpdate" : ""						-- ingestion service needs to apply this to capturedOn (email, phone, address)
+  
+  "isDeceased" : false, 				-- deceased_user in ATG.  Send as true if set in ATG
+  
+  -- Note,   allow is used as a change action to toggle existing permission on/off
+  "permissions" : [ 
+         -- receive_email, emailoptin_date in ATG
+		{"permission" : "frontlineEmail", "allow" : true, "code" : "DNEC",  "capturedOn":"2019-03-12T10:30:00Z"},
+		-- email_optin_preference, emailoptin_date in ATG
+		{"permission" : "emailFrequency",  "code" : "CE1W",  "capturedOn":"2019-03-12T10:33:00Z"},
+		-- receive_mail, mail_optin_date in ATG
+		{"permission" : "mail", "code" : "DNMC", "allow" : true, "capturedOn":"2019-03-12T10:33:00Z"},
+		-- mobile_text_optin, phone_optin_date in ATG
+		{"permission" : "mobileText", "allow" : false, "code" : "DNMC", "capturedOn":"2019-03-12T10:33:00Z"},
+		-- receive_phone_call, phone_optin_date in ATG
+		{"permission" : "phone", "allow" : false, "code" : "DNMC",  "capturedOn":"2019-03-12T10:33:00Z"},
+		-- mail_Catalog, mail_catalog_date in ATG
+		{"permission" : "mailCatalog", "allow" : false, "code" : "DNTC", "capturedOn":"2019-03-12T10:33:00Z"},
+		-- phone_recorded_msgs, phone_optin_date in ATG
+		{"permission" : "prerecordedMessages", "allow" : false, "code" : "DNXC",  "capturedOn":"2019-02-07T01:03:00Z"},	
+		-- share_Email, share_updated_date in ATG
+		{"permission" : "shareEmail", "allow" : false, "code" : "DNR",  "capturedOn":"2019-02-07T01:03:00Z"}	
+	],
+     
+	 --  ATG operational message included interests. May not include description and ingestion will have to look up in Parquet File using code
+	"interests" : [  
+		{"interest" : "NARVW", "description" : "New Arrivals - Chicos", "capturedOn" : "2014-07-28T04:57:00"},
+		{"interest" : "PETC", "description" : "Petite Sizes - Chicos", "capturedOn" : "2014-07-28T04:57:00"}, -- not used today
+		{"interest" : "PETC", "description" : "Plus Sizes - Chicos", "capturedOn" : "2014-07-28T04:57:00"}, -- not used today
+		{"interest" : "FSHNC", "description" : "Fashion Trends & Style Tips - Chicos", "capturedOn" : "2010-01-31 05:05:00"},
+		{ "interest" : "EVNTC", "description" : "Local Store Events - Chicos", "capturedOn" : "2010-01-31 05:05:00"},
+		{"interest" : "SALEC",  "description" : "Sales Events - Chicos" "capturedOn" : "2010-01-31 05:05:00"}
+	],
+	
+	-- Requests received from Source systems.  These will be captured in event history.
+	"requests" : [
+		{ "description" : "Birthday Card", "code" : "REQST", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Birthday Card", "code" : "RPL", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Birthday Card", "code" : "RPLBD", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Chico's Catalog with Soma Insert", "code" : "CHSOM", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Soma Catalog", "code" : "SCTLG", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Catalog", "code" : "CAT", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Never Received Card", "code" : "NVRCV", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Lost or Stolen Card", "code" : "LOST", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Lost or Stolen Soma Card", "code" : "SLOST", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Card Name Change", "code" : "NMCHG", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Replace Card Address Change", "code" : "SLOST", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" },
+		{ "description" : "Black Book Card", "code" : "BBCRD", "capturedOn" : "YYYY-MM-DDTHH:MM:SS" }
+	]
+   
+	"addresses":[
+		{
+		  "type":"H",  -- primary
+		  "countryCode":"USA",   -- send pri 
+		  "street1":"416 OLIVER AVE S",
+		  "street2" : "",  -- provide when exists
+		  "city":"MINNEAPOLIS",
+		  "state":"MN",
+		  "zipCode":"55405"		  
+		}
+		{
+		  "type":"V",  -- seasonal
+		  "countryCode":"USA",   -- 
+		  "street1":"123 Main AVE S",
+		  "street2" : "",  -- provide when exists
+		  "city":"ESTERO",
+		  "state":"FL",
+		  "zipCode":"33333",
+			"monthTo" : 04,
+			"monthFrom" : 01
+		}
+		],
+	  
+	  "phones":[
+		{
+		  "type":"H",  -- H for Home - non Mobile provided, M for Mobile
+		  "number":"9055862104"
+		},
+		{
+		  "type":"M",  -- H for Home, M for Mobile
+		  "number":"9055862345"
+		}
+	],
+	
+	"emails":[
+		{
+		  "type" : "promotional",  -- ATG allows establishing a separate promotional email from the email used to login.
+		  "address":"km555111@emaildomain.com"  -- 
+		}
+	  ],
+
+	  -- 		
+	"loyalty": [								
+		{
+			"isActive": true, 								-- (from ATG)
+			"loyaltyFlag": true,   							-- loyalty_flag from ATG
+			"capturedOn" : "2016-06-29T07:26:00Z",
+			"tier": null,  				 					-- loyalty_tier from ATG
+			"optinDate": ""  								-- enrollment_dt from ATG
+		}
+	]
+}
+

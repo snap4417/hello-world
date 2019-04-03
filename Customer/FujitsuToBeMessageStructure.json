@@ -1,0 +1,45 @@
+{
+  "brandId" : 1
+  "customerNo":2100000670,
+  "firstName":"KATHYRN",
+  "middleInitial" : "",  -- provide when exists
+  "lastName":"KERBER",
+  "gender":"U",
+  "dateOfBirth": "1910-04-01",
+  "joinDate":"2014-09-14",
+  "joinLocation":"1801",
+  "preferredLanguage" : "English",   
+  
+	-- Note, ingestion service may have to lookup code from Parquet File using permission value.  allow is used as a change action to toggle permission on/off
+    "permissions" : [
+         -- email optOut. Note, when optOut:false = allow:true; dne_date
+		{"permission" : "frontlineEmail", "allow" : true, "code" : "DNEC",  "capturedOn":"2019-03-12T10:30:00Z"},
+		-- mail optOut. Note, when optOut:false = allow:true; dnm_date
+		{"permission" : "mail", "allow" : true, "code" : "DNMC", "capturedOn":"2019-03-12T10:33:00Z"},
+		--phone optOut. Note, when optOut:false = allow:true; dnc_date
+		{"permission" : "phone", "allow" : true, "code" : "DNCC", "capturedOn":"2019-03-12T10:33:00Z"}
+	],  
+  
+    "addresses":[
+		{
+		  "type":"H",  -- Hard coded, since ATG can send us two types
+		  "countryCode":"US",  - ingestion process needs to convert 2 digit code to 3 
+		  "street1":"416 OLIVER AVE S",
+		  "street2" : "",  -- provide when exists
+		  "city":"MINNEAPOLIS",
+		  "state":"MN",
+		  "zipCode":"55405"		  
+		}
+		],
+	  "phones":[
+		{
+		  "type":"H",  -- H for Home, M for Mobile
+		  "number":"9055862104"
+		}
+	  ],
+	  "emails":[
+		{
+		  "address":"kmkerber@comcast.net"
+		}
+	  ],
+}

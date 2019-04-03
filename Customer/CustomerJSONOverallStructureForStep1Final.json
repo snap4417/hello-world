@@ -1,0 +1,240 @@
+{
+	"_id": "1+55003057",
+	
+	"individual_id" : "TBD???", 				
+	
+	"deprecated_id" : 123456789,							
+	"alpha_key": "Rock lson   ",
+	"phonetic_key": "Roc son     ",
+	"first_name": "Rocky",
+	"last_name": "Carlson",
+	"gender": "Female",  					
+	"date_of_birth" : "1910-09-01",  			
+	"is_deceased" : false,   				
+	
+	"associate_number" : 1000999,  			
+	
+	"joined_on" : "2014-09-14T00:00:00Z", 	
+	"joined_at":"1801", 					
+	"referred_by" : "Television", 			
+	"introduced_by" : "STORE",				
+	"update_on": "2014-07-28T04:57:00.000Z",
+	"preferred_language" : "English",  		
+
+	"last_email_opened_on" 	: "2018-01-318T04:57:00.000Z", 
+	"last_email_clicked_on" 	: "2018-01-318T04:57:00.000Z", 
+	
+	"campaign_seeds" : [ 
+		{"depreciated_seed_id" : 855682, "seed":"SEED1", "description" : "Primary", "captured_on":"2019-03-12T10:30:00Z", "updated_on" : "2014-07-28T04:57:00Z"} 
+	],
+	
+	   
+   "business_attributes" : [
+		{"attribute" : "value", "captured_on": "YYYY-MM-DDTHH:MM:SSZ", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ"} 
+	],
+	
+	"requests" : [
+		{ "description" : "Birthday Card", "code" : "REQST", "group": "group_code", "group_description" : "Group Description","captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Birthday Card", "code" : "RPL" , "group": "group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Birthday Card", "code" : "RPLBD","group": "group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Chico's Catalog with Soma Insert", "code" : "CHSOM", "group": "group_code", "group_description" : "Group Description","captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Soma Catalog", "code" : "SCTLG", "group": "group_code", "group_description" : "Group Description","captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Catalog", "code" : "CAT", "group":"group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Never Received Card", "code" : "NVRCV", "group":"group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Lost or Stolen Card", "code" : "LOST", "group": "group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Lost or Stolen Soma Card", "code" : "SLOST", "group":"group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Card Name Change", "code" : "NMCHG", "group":"group_code", "group_description" : "Group Description","captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Replace Card Address Change", "code" : "SLOST", "group":"group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" },
+		{ "description" : "Black Book Card", "code" : "BBCRD", "group": "group_code", "group_description" : "Group Description", "captured_on" : "YYYY-MM-DDTHH:MM:SS", "updated_on" : "YYYY-MM-DDTHH:MM:SSZ" }
+	],
+	
+	"excludes" : [
+		{"from_process" : "experian", "captured_on": "YYYY-MM-DDTHH:MM:SSZ", "updated_on" : "2017-01-18 10:55:00" },	
+		{"from_process" : "purge", "captured_on": "YYYY-MM-DDTHH:MM:SSZ", "updated_on" : "2015-06-22 09:43:00" },  	
+		{"from_process" : "consolidation", "captured_on": "YYYY-MM-DDTHH:MM:SSZ", "updated_on" : "2017-01-18 10:55:00"}, 
+		{"from_process" : "marketing", "captured_on": "YYYY-MM-DDTHH:MM:SSZ", "updated_on" : "2019-01-18 10:55:00"} 	
+	],
+   
+   "permissions" : [
+		{ "deprecated_permission_id" : 2949164521, "permission" : "frontlineEmail", "code" : "DNEC", "description" : "Do Not Email Chico's", "captured_on":"2019-03-12T10:30:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440999, "permission" : "frontlineEmailFrequency", "code" : "CE1W", "description" : "Send email once a week CHS", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440999, "permission" : "mail", "code" : "DNMC", "description" : "Do Not Mail Chico's", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440997, "permission" : "phone", "code" : "DNMC", "description" : "Do Not Phone Chico's", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440996, "permission" : "mobileText", "code" : "DNTC", "description" : "Do Not Text Chico's", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440991, "permission" : "mailCatalog", "code" : "MUST", "description" : "Must Mail Catalog", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440891, "permission" : "shareWithPartners", "code" : "DNR", "description" : "Do Not Share", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 304407771, "permission" : "outletEmail", "code" : "DOEC", "description" : "Do Not Email Chicos OTR", "captured_on":"2019-02-07T01:03:00Z", "updated_on" : "2019-02-07T01:52:00Z"},
+		{ "deprecated_permission_id" : 30440999, "permission" : "outletEmailFrequency", "code" : "CE1W", "description" : "Send email once a week CHS", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"}
+	],
+
+   "crossBrandPermissions" : [
+		{ "deprecated_permission_id" : 294916423, "permission" : "frontline_email", "code" : "DNEW", "description" : "Do Not Email WHBM", "captured_on":"2019-03-12T10:30:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440999, "permission" : "frontline_email_frequency", "code" : "WE1W", "description" : "Send email once a week WHBM", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440999, "permission" : "mail", "code" : "DNMW", "description" : "Do Not Mail WHBM", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440997, "permission" : "phone", "code" : "DNMW", "description" : "Do Not Phone WHBM", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"},
+		{ "deprecated_permission_id" : 30440996, "permission" : "mobile_text", "code" : "DNTW", "description" : "Do Not Text WHBM", "captured_on":"2019-03-12T10:33:00Z", "updated_on" : "2019-03-12T11:57:00Z"}
+	
+	],
+     
+	"interests" : [  
+		{"deprecated_preference_id": 277244709, "interest" : "NARVW", "description" : "New Arrivals - Chicos", "captured_on" : "2014-07-28T04:57:00", "updated_on" : "2014-07-28T04:57:00" },
+		{"deprecated_preference_id": 277244751, "interest" : "FSHNC", "description" : "Fashion Trends & Style Tips - Chicos", "captured_on" : "2010-01-31 05:05:00", "updated_on" : "2010-01-31 05:05:00"},
+		{"deprecated_preference_id": 277244771, "interest" : "EVNTC", "description" : "Local Store Events - Chicos", "captured_on" : "2010-01-31 05:05:00", "updated_on" : "2010-01-31 05:05:00"},
+		{"deprecated_preference_id": 277244999, "interest" : "SALEC",  "description" : "Sales Events - Chicos", "captured_on" : "2010-01-31 05:05:00", "updated_on" : "2013-10-20T01:51:00"}
+	],
+	
+	"sizes" : [
+		{"deprecated_preference_id" : 303833861, "code" : "BOTM", "description" : "Bottom Size", "size" : "XLH", "captured_on" : "2018-08-25T12:00:00", "updated_on" : "2018-08-26T08:00:00" },
+		{"deprecated_preference_id" : 303833863, "code" : "BRAS", "description" : "Standard Bra Size", "size" : "DD38", "captured_on" : "2018-08-25T12:00:00", "updated_on" : "2018-08-26T08:00:00" },
+		{"deprecated_preference_id" : 303833862, "code" : "TOPS", "description" : "Top Size", "size" : "XL", "captured_on" : "2018-08-25T12:00:00", "updated_on" : "2018-08-26T08:00:00" },
+		{"deprecated_preference_id" : 303833865, "code" : "BRAL", "description" : "Bralette Size", "size" : "XXL", "captured_on" : "2018-08-25T12:00:00", "updated_on" : "2018-08-26T08:00:00" }
+	],
+   
+
+	"metrics" : { 
+		"first_transaction_date" : "2000-07-28T04:57:00Z",
+		"last_transaction_date": "2018-12-28T04:57:00Z",
+		"lifetime_transactioncount_seed": 123,
+		"lifetime_total_sales_amount_seed": 12321.43,
+		"lifetime_coupon_transaction_count_seed": 43,
+		"lifetime_gross_margin_amount_seed": 6554,
+		"lifetime_total_unit_count_seed": 254
+	},
+   		
+	"phones" : [  
+		{
+
+		"type": "home", 
+		"number": "2068539480",
+		"captured_on":"2014-07-12T01:10:00Z",
+		"updated_on": "2014-07-28T04:58:00Z"
+		},
+		{
+		"type": "mobile", 
+		"number": "2065551234",
+		"captured_on":"2014-07-12T01:10:00Z",
+		"updated_on": "2014-07-28T04:58:00Z"
+		}
+	],
+		
+	"emails" : [    
+			{	"address" : "myemail2@dot.com",
+				"is_emailable" : true, 					
+				"captured_on":"2014-07-12T01:10:00Z",
+				"updated_on": "2014-07-28T04:58:00.000Z"
+			},
+			{	"address" : "myemail@dot.com",
+				"is_emailable" : true, 					
+				"captured_on":"2014-07-12T01:10:00Z",
+				"updated_on": "2014-07-28T04:58:00.000Z"
+			}
+		],
+	
+  
+	"addresses" : [  
+			{
+			  "is_mailable": true,   
+			  "is_prison_address" : false,  
+			  "type"  : "home", 
+			  "country_code": "USA",
+			  "address_match_key": "98057368   STEVE     ",
+			  "carrier_route": "",
+			  "ncoa_pin": "5000012428416",
+			  "street1": "980    STEVE    ",
+			  "street2": "",
+			  "city": "Renton",
+			  "state": "WA",
+			  "dpv_chkdigit": "68 2",
+			  "dpv_lot_no_seq": "0278 A",
+			  "zip_code": "98057-3435",
+			  "captured_on":"2014-07-12T01:10:00Z",
+			  "updated_on": "2014-07-28T04:58:00.000Z",
+			  "month_from": null,
+			  "month_to": null,
+			  "qas_match_code": "R913",
+			  "mail_returned": false,			
+			  "experian" : "TBD"				
+			  
+			  
+			}
+		],
+		
+
+	"socialMedia": [
+		
+		{
+			"twitter" : "@mytwitter"
+		
+		},
+		{
+			"facebook" : "facebookname"
+			
+		},
+		{
+			"instagram" : "instahandle"
+			
+		},
+		{
+			"pinterrest" : "pinteresthandle"
+			
+		}
+		],
+			
+	  
+		
+	
+	"loyalty": [									
+		{
+			"deprecated_loyalty_id": 11702520,
+			"is_enrolled": true, 							
+			"status_reached_on": "2000-05-15T12:00:00Z",     		
+			"status_flag": true,   							
+			"lifetime_spend_amount": 28165.22,  				
+			"most_recent_spend_date": "2016-06-30T08:26:00Z",  
+			"captured_on" : "2016-06-29T07:26:00Z",
+			"updated_on": "2016-06-30T08:26:00Z",
+			"tier": null,  				 					
+			"tier_reached_on": "",  
+			"spend_amount": null,  
+			"delta_to_next_tier": null,  						
+			"enrollment_requested_on": "2000-05-15T12:00:00Z" 
+			
+		}
+	],
+	
+
+	"alternate_keys" : [
+		{ 						}
+	],
+	
+	"consolidations": [
+		{
+			 "deprecated_xref_id" :  1234,
+      "old_brand_id": 1,
+			"old_customer_no": 8138001583,
+			"updated_on": "2016-06-30T08:26:00Z",
+			"date_of_obsolescence": "8/23/2000 10:01:00 AM"
+		},
+    {
+      "deprecated_xref_id": 1235,
+      "old_brand_id": 1,
+      "old_customer_no": 9991003784,
+      "updated_on": "2016-06-30T08:26:00Z",
+      "date_of_obsolescence": "8/21/2000 4:27:00 PM"
+    },
+    {
+      "deprecated_xref_id": 1236,
+      "old_brand_id": 1,
+      "old_customer_no": 1025646682,
+      "updated_on": "2016-06-30T08:26:00Z",
+      "date_of_obsolescence": "10/6/2010 12:31:00 PM"
+    },
+    {
+      "deprecated_xref_id": 1238,
+      "old_brand_id": 1,
+      "old_customer_no": 1023487386,
+      "updated_on": "2016-06-30T08:26:00Z",
+      "date_of_obsolescence": "6/3/2010 4:24:00 PM"
+    }
+	]
+}
